@@ -19,8 +19,8 @@ c1, c2, c3 = st.columns([1, 4, 1])
 
 with c2:
     with st.form(key="my_form"):
-        f = st.file_uploader("Choose a file")
-        st.info("""Upload a .wav, .mp3 or .mp4 file above.""")
+        f = st.file_uploader("Choose a file", type=['mp3', 'mp4', 'wav'])
+        st.info("""Upload a .wav, .mp3 or .mp4 file above UNDER 10MB""")
         submit_button = st.form_submit_button(label="Transcribe")
 
 if f is not None:
@@ -33,28 +33,30 @@ if f is not None:
     getsize = f.tell()  # os.path.getsize(path_in)
     f.seek(old_file_position, os.SEEK_SET)
     getsize = round((getsize / 1000000), 1)
+    # st.write(getsize)
 
-    with NamedTemporaryFile(dir='.', suffix='.csv') as file:
-        file.write(f.getbuffer())
+    if getsize > 5:
+        st.error("Sorry, we only allow files below 10MB in this version")
+    else:
 
-        # path = file.name.strip('/')
-        path = file.name
-        Whisper = Speech2Text()
-        text = Whisper.transcribe_audio(path)
+        with NamedTemporaryFile(dir='.', suffix='.csv') as file:
+            file.write(f.getbuffer())
+            path = file.name
+            Whisper = Speech2Text()
+            text = Whisper.transcribe_audio(path)
 
-    if text:
-        st.audio(f)
-        input = st.text_area("Edit Your Transcription", value=text)
-        # st.form_submit_button(label="Download")
-        st.warning(
-         "🚨 Before pressing Download, make sure you save by pressing CMD+Enter.")
-        st.download_button("Download",
-                            input,
-                           file_name=None,
-                            mime=None,
-                            key=None,
-                            help=None,
-                            on_click=None,
-                            args=None,
-                            kwargs=None,
-                        )
+        if text:
+            st.audio(f)
+            input = st.text_area("Edit Your Transcription", value=text)
+            st.warning(
+             "🚨 Before pressing Download, make sure you save by pressing CMD+Enter.")
+            st.download_button("Download",
+                                input,
+                               file_name=None,
+                                mime=None,
+                                key=None,
+                                help=None,
+                                on_click=None,
+                                args=None,
+                                kwargs=None,
+                            )
