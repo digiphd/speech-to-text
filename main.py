@@ -11,7 +11,7 @@ st.markdown("""
             - Press Transcribe 
             - Review and edit
             - Download txt file
-            Recommended File Length: less than 10minutes.
+            Recommended File Length: less than 10MB.
             """)
 
 
