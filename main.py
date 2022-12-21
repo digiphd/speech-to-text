@@ -5,7 +5,7 @@ from bin.audio2text import Speech2Text
 
 
 st.set_page_config(page_title="Transcribe", page_icon="📈")
-st.markdown("# Transcribe an Audio File 🔊")
+st.markdown("# Transcribe an Audio File [FREE] 🔊")
 st.markdown("""
             - Upload a wav, mp3 or mp4 file 
             - Press Transcribe 
