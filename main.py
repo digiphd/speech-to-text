@@ -42,7 +42,7 @@ if f is not None:
         st.write(path)
         st.write(path_in)
         Whisper = Speech2Text()
-        text = Whisper.transcribe_audio(path_in)
+        text = Whisper.transcribe_audio(path)
 
     if text:
         st.audio(f)
