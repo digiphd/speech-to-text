@@ -2,7 +2,7 @@ import streamlit as st
 import os
 from tempfile import NamedTemporaryFile
 from bin.audio2text import Speech2Text
-from pathlib import Path
+
 
 st.set_page_config(page_title="Transcribe", page_icon="📈")
 st.markdown("#Transcribe an Audio File 🔊")
@@ -37,8 +37,7 @@ if f is not None:
     with NamedTemporaryFile(dir='.', suffix='.csv') as file:
         file.write(f.getbuffer())
 
-        path = str(Path(file.name).parents[1])
-        st.write(file.name)
+        path = file.name.strip('/')
         st.write(path)
         Whisper = Speech2Text()
         text = Whisper.transcribe_audio(path)
