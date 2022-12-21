@@ -20,7 +20,7 @@ c1, c2, c3 = st.columns([1, 4, 1])
 with c2:
     with st.form(key="my_form"):
         f = st.file_uploader("Choose a file")
-        st.info("""Upload a .wav file above.""")
+        st.info("""Upload a .wav, .mp3 or .mp4 file above.""")
         submit_button = st.form_submit_button(label="Transcribe")
 
 if f is not None:
