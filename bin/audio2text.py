@@ -19,6 +19,7 @@ class Speech2Text:
         model = whisper.load_model("tiny")
         # model = whisper.load_model("base")
         # model = whisper.load_model("small") # Takes too Long for long audio greater than 5mins.
+        print(audio)
         result = model.transcribe(audio,  fp16=False, language='English')
 
         text = result['text']
