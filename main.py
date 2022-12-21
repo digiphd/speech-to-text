@@ -36,6 +36,7 @@ if f is not None:
     with NamedTemporaryFile(dir='.', suffix='.csv') as file:
         file.write(f.getbuffer())
         path = file.name
+        st.write(path)
         Whisper = Speech2Text()
         text = Whisper.transcribe_audio(path)
 
