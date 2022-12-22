@@ -11,7 +11,7 @@ st.markdown("""
             - Press Transcribe 
             - Review and edit
             - Download txt file
-            Recommended File Length: less than 10MB.
+            Recommended File Length: less than 15MB.
             """)
 
 
@@ -20,7 +20,7 @@ c1, c2, c3 = st.columns([1, 4, 1])
 with c2:
     with st.form(key="my_form"):
         f = st.file_uploader("Choose a file", type=['mp3', 'mp4', 'wav'])
-        st.info("""Upload a .wav, .mp3 or .mp4 file above UNDER 10MB""")
+        st.info("""Upload a .wav, .mp3 or .mp4 file above UNDER 15MB""")
         submit_button = st.form_submit_button(label="Transcribe")
 
 if f is not None:
