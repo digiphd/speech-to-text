@@ -2,7 +2,7 @@ import streamlit as st
 import os
 from tempfile import NamedTemporaryFile
 from bin.audio2text import Speech2Text
-
+SIZE = 15
 
 st.set_page_config(page_title="Transcribe", page_icon="📈")
 st.markdown("# Transcribe an Audio File [FREE] 🔊")
@@ -35,8 +35,8 @@ if f is not None:
     getsize = round((getsize / 1000000), 1)
     # st.write(getsize)
 
-    if getsize > 5:
-        st.error("Sorry, we only allow files below 10MB in this version")
+    if getsize > SIZE:
+        st.error("Sorry, we only allow files below "+str(15)+"MB in this version")
     else:
 
         with NamedTemporaryFile(dir='.', suffix='.csv') as file:
